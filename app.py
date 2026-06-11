@@ -18,10 +18,12 @@ st.set_page_config(
     page_icon="🛡️"
 )
 
-# Thêm CSS tùy chỉnh để định dạng In đậm và Nền Tím cho các giá trị dữ liệu Metric
+# ==============================================================================
+# CSS TÙY CHỈNH GIAO DIỆN MÀU SẮC
+# ==============================================================================
 st.markdown("""
     <style>
-    /* Tùy chỉnh màu nền và in đậm cho các số liệu Metric */
+    /* Tùy chỉnh màu nền và in đậm cho Dữ liệu Metric (Phần số) */
     [data-testid="stMetricValue"] {
         background-color: #8e44ad; /* Màu tím */
         color: white;
@@ -29,12 +31,23 @@ st.markdown("""
         padding: 10px;
         border-radius: 8px;
         text-align: center;
-        display: inline-block;
+        display: block;
         width: 100%;
     }
+    
+    /* Tùy chỉnh màu nền và in đậm cho Tiêu đề Metric (Phần chữ) */
     [data-testid="stMetricLabel"] {
-        font-weight: bold;
-        font-size: 16px;
+        background-color: #2980b9; /* Màu xanh dương */
+        color: white !important;
+        font-weight: bold !important; /* In đậm */
+        font-size: 16px !important;
+        padding: 8px;
+        border-radius: 8px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5px;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -298,7 +311,7 @@ with tab3:
             cm_labels = ['Hợp lệ (0)', 'Gian lận (1)']
             fig_cm = px.imshow(res['cm'], text_auto=True, x=cm_labels, y=cm_labels,
                                labels=dict(x="Nhãn Dự Đoán", y="Nhãn Thực Tế"),
-                               color_continuous_scale="Purples", height=400) # Đổi màu ma trận nhầm lẫn sang tông tím để đồng bộ
+                               color_continuous_scale="Purples", height=400)
             st.plotly_chart(fig_cm, use_container_width=True)
             
         with col_g2:
